@@ -1,0 +1,31 @@
+<div class="loginForm">
+  <h3>Login</h3>
+  <form class="logon-form" novalidate>
+    <div id="form-based">
+      <div>
+      <input class="email-input" name="email" type="text" placeholder="Username" value autofocus disabled>
+      </div>
+
+      <div>
+      <input class="password-input" name="password" type="password" placeholder="Password" disabled>
+      </div>
+
+      <button class="login-submit-button" type="submit">Login</button>
+    </div>
+  </form>
+
+  <div class="form-divider">
+    <span class="signin-divider">
+      <h3> --------------- or signin with ---------------</h3>
+    </span>
+  </div>
+
+  <div id="idp-based">
+      <a href="http://localhost:8082/saml/login?disco=true">
+        <button class="idp-button">SSO Circle</button></a>
+
+      <button class="idp-button" type="submit" value="GOOGLE">GOOGLE</button>
+  </div>
+
+
+</div>

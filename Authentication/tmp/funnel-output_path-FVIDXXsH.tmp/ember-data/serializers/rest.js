@@ -1,0 +1,1 @@
+/home/zemoso/IdeaProjects/Security/ember/emberPractice/Login/Zesharing/tmp/funnel-input_base_path-AXMT0G5R.tmp/serializers/rest.js
