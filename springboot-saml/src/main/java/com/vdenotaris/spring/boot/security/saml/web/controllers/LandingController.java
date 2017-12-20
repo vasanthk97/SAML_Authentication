@@ -16,25 +16,11 @@
 
 package com.vdenotaris.spring.boot.security.saml.web.controllers;
 
-import com.vdenotaris.spring.boot.security.saml.web.stereotypes.CustomAuthUser;
-import org.owasp.esapi.waf.internal.InterceptingHTTPServletResponse;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.saml.SAMLCredential;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.vdenotaris.spring.boot.security.saml.web.stereotypes.CurrentUser;
-import org.springframework.web.client.RestTemplate;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
@@ -42,16 +28,16 @@ public class LandingController {
     private static org.slf4j.Logger logger = LoggerFactory.getLogger(LandingController.class);
 
 	@RequestMapping("/landing")
-	public String landing(@CurrentUser User user, Model model, HttpServletResponse httpServletResponse) {
-		logger.info("logged in user: "+user.getUsername());
+	public String landing( Model model, HttpServletResponse httpServletResponse) {
+		//logger.info("logged in user: "+user.getUsername());
 
-		Cookie cookie = new Cookie("Auth", "zemoso1234");
-		cookie.setPath("/protected");
-		httpServletResponse.addCookie(cookie);
+//		Cookie cookie = new Cookie("Auth", "zemoso1234");
+//		cookie.setPath("/protected");
+//		httpServletResponse.addCookie(cookie);
+//
+//		Authentication authentication = new UsernamePasswordAuthenticationToken(user,null,null);
 
-		Authentication authentication = new UsernamePasswordAuthenticationToken(user,null,null);
-
-		model.addAttribute("username", 	user.getUsername());
+		model.addAttribute("username", 	"sudheer-ds");
 		return "landing";
 	}
 
