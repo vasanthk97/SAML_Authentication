@@ -19,6 +19,7 @@ package com.vdenotaris.spring.boot.security.saml.web.controllers;
 import com.vdenotaris.spring.boot.security.saml.web.stereotypes.CustomAuthUser;
 import org.owasp.esapi.waf.internal.InterceptingHTTPServletResponse;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -40,31 +41,25 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LandingController {
     private static org.slf4j.Logger logger = LoggerFactory.getLogger(LandingController.class);
+    @Autowired CustomAuthUser customAuthUser;
 
 	@RequestMapping("/landing")
-	public String landing(@CurrentUser User user, Model model, HttpServletResponse httpServletResponse) {
-		logger.info("logged in user: "+user.getUsername());
-
-		Cookie cookie = new Cookie("Auth", "zemoso1234");
-		cookie.setPath("/protected");
-		httpServletResponse.addCookie(cookie);
-
-		Authentication authentication = new UsernamePasswordAuthenticationToken(user,null,null);
-
-		model.addAttribute("username", 	user.getUsername());
+	public String landing(Model model) {
+		logger.info("logged in user: "+customAuthUser.getUsername());
+		model.addAttribute("username",customAuthUser.getUsername());
 		return "landing";
 	}
 
-	/*@PostMapping("/signoff")
-	public String singoff(@AuthenticationPrincipal Authentication authentication, Model model, HttpServletResponse httpServletResponse){
+	@PostMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response){
 		logger.info("logout is requested");
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.postForEntity("http://localhost:8082/saml/logout",Boolean.class, HttpServletResponse.class);
+        //handleLogOutResponse(request,response);
 		return "ok";
 	}
 
-	@GetMapping("/landing2")
-	public String landing2(@CurrentUser User user, Model model, HttpServletResponse httpServletResponse) {
-		return "landing2";
-	}*/
+
+
+
 }

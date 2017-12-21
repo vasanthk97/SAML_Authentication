@@ -37,30 +37,15 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
         }
 
 
-        final SignedJWT signedJWT;
-        try {
-            signedJWT = SignedJWT.parse(jwtToken);
-
-            boolean isVerified = signedJWT.verify(new MACVerifier(SecurityConstant.JWT_SECRET.getBytes()));
-
-            if(!isVerified){
-                throw new BadCredentialsException("Invalid token signature");
+        if(JWTUtil.isJWTValid(jwtToken)){
+            SignedJWT signedJWT = null;
+            try {
+                signedJWT = SignedJWT.parse(jwtToken);
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-
-            //is token expired ?
-            LocalDateTime expirationTime = LocalDateTime.ofInstant(
-                    signedJWT.getJWTClaimsSet().getExpirationTime().toInstant(), ZoneId.systemDefault());
-
-            if (LocalDateTime.now(ZoneId.systemDefault()).isAfter(expirationTime)) {
-                throw new CredentialsExpiredException("Token expired");
-            }
-
             return new JwtAuthenticationToken(signedJWT, null, null);
-
-        } catch (ParseException e) {
-            throw new InternalAuthenticationServiceException("Unreadable token");
-        } catch (JOSEException e) {
-            throw new InternalAuthenticationServiceException("Unreadable signature");
         }
+        return null;
     }
 }

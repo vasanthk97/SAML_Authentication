@@ -19,7 +19,8 @@ import java.io.IOException;
  */
 public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-    public static final String HEADER_SECURITY_TOKEN = "x-auth-token";
+    //public static final String HEADER_SECURITY_TOKEN = "x-auth-token";
+    public static final String HEADER_SECURITY_TOKEN = "jwt";
 
     public JwtAuthenticationFilter(final String matcher, AuthenticationManager authenticationManager) {
         super(matcher);
@@ -28,9 +29,12 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        final String token = request.getHeader(HEADER_SECURITY_TOKEN);
-        JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(token);
-        return getAuthenticationManager().authenticate(jwtAuthenticationToken);
+        final String token = JWTUtil.getJwtTokenFromCookies(request);
+        if(token!=null){
+            JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(token);
+            return getAuthenticationManager().authenticate(jwtAuthenticationToken);
+        }
+        return null;
     }
 
     @Override
@@ -46,4 +50,6 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
     }
+
+
 }

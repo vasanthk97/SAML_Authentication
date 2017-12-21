@@ -19,6 +19,7 @@ package com.vdenotaris.spring.boot.security.saml.web.core;
 import com.vdenotaris.spring.boot.security.saml.web.CommonTestSupport;
 import com.vdenotaris.spring.boot.security.saml.web.TestConfig;
 import com.vdenotaris.spring.boot.security.saml.web.stereotypes.CurrentUser;
+import com.vdenotaris.spring.boot.security.saml.web.stereotypes.CustomAuthUser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,9 +59,9 @@ public class CurrentUserHandlerMethodArgumentResolverTest extends CommonTestSupp
     @Before
     public void init() throws NoSuchMethodException {
         validParam = new MethodParameter(
-        		MethodSamples.class.getMethod("validUser", User.class), 0);
+        		MethodSamples.class.getMethod("validUser", CustomAuthUser.class), 0);
         notAnnotatedParam = new MethodParameter(
-        		MethodSamples.class.getMethod("notAnnotatedUser", User.class), 0);
+        		MethodSamples.class.getMethod("notAnnotatedUser", CustomAuthUser.class), 0);
         wrongTypeParam = new MethodParameter(
         		MethodSamples.class.getMethod("wrongTypeUser", Object.class), 0);
     }

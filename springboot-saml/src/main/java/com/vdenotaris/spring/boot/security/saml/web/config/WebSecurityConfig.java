@@ -543,11 +543,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/").permitAll()
             .antMatchers("/error").permitAll()
             .antMatchers("/saml/**").permitAll()
-                .antMatchers("/signoff").permitAll()
+                .antMatchers("/logout").permitAll()
             .anyRequest().authenticated();
         http
             .logout()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/").deleteCookies("jwt","JSESSIONID");
     }
  
     /**

@@ -18,7 +18,9 @@ package com.vdenotaris.spring.boot.security.saml.web.core;
 
 import java.security.Principal;
 
+import com.vdenotaris.spring.boot.security.saml.web.stereotypes.CustomAuthUser;
 import org.springframework.core.MethodParameter;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
@@ -44,7 +46,8 @@ public class CurrentUserHandlerMethodArgumentResolver implements
 			WebDataBinderFactory binderFactory) throws Exception {
 		if (this.supportsParameter(methodParameter)) {
 			Principal principal = (Principal) webRequest.getUserPrincipal();
-			return (User) ((Authentication) principal).getPrincipal();
+			//return (CustomAuthUser) ((Authentication) principal).getPrincipal();
+			return (CustomAuthUser) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
 		} else {
 			return WebArgumentResolver.UNRESOLVED;
 		}
