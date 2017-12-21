@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+/*
 package com.vdenotaris.spring.boot.security.saml.web.controllers;
 
 import com.vdenotaris.spring.boot.security.saml.web.CommonTestSupport;
@@ -99,3 +100,4 @@ public class SSOControllerTest extends CommonTestSupport {
     }
 
 }
+*/

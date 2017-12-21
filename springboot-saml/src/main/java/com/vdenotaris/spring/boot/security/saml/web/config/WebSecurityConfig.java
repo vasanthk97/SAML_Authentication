@@ -335,9 +335,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public MetadataGenerator metadataGenerator() {
         MetadataGenerator metadataGenerator = new MetadataGenerator();
-        metadataGenerator.setEntityId("ZeSharingMani_19");
+        metadataGenerator.setEntityId("ZSamlAuth");
         metadataGenerator.setExtendedMetadata(extendedMetadata());
-        //metadataGenerator.setEntityBaseURL("http://localhost:4200");
+        metadataGenerator.setEntityBaseURL("http://local.ssocircle.com:8082");
         //metadataGenerator.setIncludeDiscoveryExtension(false);
         //metadataGenerator.setKeyManager(keyManager());
         return metadataGenerator;
@@ -356,7 +356,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public SavedRequestAwareAuthenticationSuccessHandler successRedirectHandler() {
         SavedRequestAwareAuthenticationSuccessHandler successRedirectHandler =
                 new SavedRequestAwareAuthenticationSuccessHandler();
-        successRedirectHandler.setDefaultTargetUrl("/landing");
+        successRedirectHandler.setDefaultTargetUrl("/auth/login");
         return successRedirectHandler;
     }
     
