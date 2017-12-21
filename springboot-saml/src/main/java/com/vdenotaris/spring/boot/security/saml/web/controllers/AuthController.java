@@ -47,7 +47,7 @@ public class AuthController {
                 // generate a jwt token
                 SignedJWT signedJWT = JWTUtil.buildJWTToken(user);
 
-            /* set cookie on browser, ideally it should not be a cookie set but should go in as a request header ,
+            /* TODO set cookie on browser, ideally it should not be a cookie set but should go in as a request header ,
             using filter */
                 Cookie cookie = new Cookie("jwt",signedJWT.serialize());
                 cookie.setPath("/");

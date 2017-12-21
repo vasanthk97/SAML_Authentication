@@ -22,7 +22,8 @@ public class LogoutController {
         if(accessToken.equalsIgnoreCase("notPresent")){
             return "redirect:/landing";
         }
-        handleLogOutResponse(request,response);
+        //TODO redirect to front end - ember and delete the cookies at that end
+        //handleLogOutResponse(request,response);
         return "logout";
     }
     /**

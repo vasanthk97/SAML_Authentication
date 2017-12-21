@@ -30,6 +30,7 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         final String token = JWTUtil.getJwtTokenFromCookies(request);
+        //no need to check if you need to validate token here and JWTAuthProvide authenticate does it
         if(token!=null){
             JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(token);
             return getAuthenticationManager().authenticate(jwtAuthenticationToken);

@@ -44,6 +44,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            //TODO pass a User object rather than signedJWT, user from db
             return new JwtAuthenticationToken(signedJWT, null, null);
         }
         return null;
