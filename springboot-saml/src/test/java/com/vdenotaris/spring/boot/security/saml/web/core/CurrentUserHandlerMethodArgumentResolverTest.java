@@ -18,8 +18,9 @@ package com.vdenotaris.spring.boot.security.saml.web.core;
 
 import com.vdenotaris.spring.boot.security.saml.web.CommonTestSupport;
 import com.vdenotaris.spring.boot.security.saml.web.TestConfig;
-import com.vdenotaris.spring.boot.security.saml.web.stereotypes.CurrentUser;
-import com.vdenotaris.spring.boot.security.saml.web.stereotypes.CustomAuthUser;
+import com.zemoso.zesharing.security.saml.web.core.CurrentUserHandlerMethodArgumentResolver;
+import com.zemoso.zesharing.security.saml.web.stereotypes.CurrentUser;
+import com.zemoso.zesharing.security.saml.web.stereotypes.CustomAuthUser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

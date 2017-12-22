@@ -339,7 +339,7 @@ define('zesharing/routes/protected', ['exports', 'ember-cli-js-cookie'], functio
   var Logger = Ember.Logger;
   exports.default = Route.extend({
     beforeModel: function beforeModel() {
-      if (!_emberCliJsCookie.default.get('Auth')) {
+      if (!_emberCliJsCookie.default.get('jwt')) {
         this.transitionTo('login');
       } else {
         this.transitionTo('protected');
@@ -349,22 +349,8 @@ define('zesharing/routes/protected', ['exports', 'ember-cli-js-cookie'], functio
 
     actions: {
       onLogout: function onLogout() {
-        /*Cookies.remove('Auth', { path: '/protected' });
-        /!*this.transitionTo('http://localhost:8082/saml/logout')*!/
-        this.replaceWith('/');*/
-        Ember.$.ajax({
-          url: "/saml/logout",
-          type: "POST",
-          data: "logout"
-        }).then(function (resp) {
-          // handle your server response here
-          Logger.log(resp);
-        }).catch(function (error) {
-          // handle errors here
-          Logger.log(error);
-        });
-        _emberCliJsCookie.default.remove('Auth', { path: '/protected' });
-        this.replaceWith('/');
+        _emberCliJsCookie.default.remove('jwt');
+        window.location.replace("http://local.ssocircle.com:8082/landing");
       }
     }
   });
@@ -404,7 +390,7 @@ define("zesharing/templates/components/login-form", ["exports"], function (expor
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "3fztvit7", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"loginForm\"],[7],[0,\"\\n  \"],[6,\"h3\"],[7],[0,\"Login\"],[8],[0,\"\\n  \"],[6,\"form\"],[9,\"class\",\"logon-form\"],[9,\"novalidate\",\"\"],[7],[0,\"\\n    \"],[6,\"div\"],[9,\"id\",\"form-based\"],[7],[0,\"\\n      \"],[6,\"div\"],[7],[0,\"\\n      \"],[6,\"input\"],[9,\"class\",\"email-input\"],[9,\"name\",\"email\"],[9,\"type\",\"text\"],[9,\"placeholder\",\"Username\"],[9,\"value\",\"\"],[9,\"autofocus\",\"\"],[9,\"disabled\",\"\"],[7],[8],[0,\"\\n      \"],[8],[0,\"\\n\\n      \"],[6,\"div\"],[7],[0,\"\\n      \"],[6,\"input\"],[9,\"class\",\"password-input\"],[9,\"name\",\"password\"],[9,\"type\",\"password\"],[9,\"placeholder\",\"Password\"],[9,\"disabled\",\"\"],[7],[8],[0,\"\\n      \"],[8],[0,\"\\n\\n      \"],[6,\"button\"],[9,\"class\",\"login-submit-button\"],[9,\"type\",\"submit\"],[7],[0,\"Login\"],[8],[0,\"\\n    \"],[8],[0,\"\\n  \"],[8],[0,\"\\n\\n  \"],[6,\"div\"],[9,\"class\",\"form-divider\"],[7],[0,\"\\n    \"],[6,\"span\"],[9,\"class\",\"signin-divider\"],[7],[0,\"\\n      \"],[6,\"h3\"],[7],[0,\" --------------- or signin with ---------------\"],[8],[0,\"\\n    \"],[8],[0,\"\\n  \"],[8],[0,\"\\n\\n  \"],[6,\"div\"],[9,\"id\",\"idp-based\"],[7],[0,\"\\n      \"],[6,\"a\"],[9,\"href\",\"http://localhost:8082/saml/login?disco=true\"],[7],[0,\"\\n        \"],[6,\"button\"],[9,\"class\",\"idp-button\"],[7],[0,\"SSO Circle\"],[8],[8],[0,\"\\n\\n      \"],[6,\"button\"],[9,\"class\",\"idp-button\"],[9,\"type\",\"submit\"],[9,\"value\",\"GOOGLE\"],[7],[0,\"GOOGLE\"],[8],[0,\"\\n  \"],[8],[0,\"\\n\\n\\n\"],[8]],\"hasEval\":false}", "meta": { "moduleName": "zesharing/templates/components/login-form.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "zN0aiUQe", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"loginForm\"],[7],[0,\"\\n  \"],[6,\"h3\"],[7],[0,\"Login\"],[8],[0,\"\\n  \"],[6,\"form\"],[9,\"class\",\"logon-form\"],[9,\"novalidate\",\"\"],[7],[0,\"\\n    \"],[6,\"div\"],[9,\"id\",\"form-based\"],[7],[0,\"\\n      \"],[6,\"div\"],[7],[0,\"\\n      \"],[6,\"input\"],[9,\"class\",\"email-input\"],[9,\"name\",\"email\"],[9,\"type\",\"text\"],[9,\"placeholder\",\"Username\"],[9,\"value\",\"\"],[9,\"autofocus\",\"\"],[9,\"disabled\",\"\"],[7],[8],[0,\"\\n      \"],[8],[0,\"\\n\\n      \"],[6,\"div\"],[7],[0,\"\\n      \"],[6,\"input\"],[9,\"class\",\"password-input\"],[9,\"name\",\"password\"],[9,\"type\",\"password\"],[9,\"placeholder\",\"Password\"],[9,\"disabled\",\"\"],[7],[8],[0,\"\\n      \"],[8],[0,\"\\n\\n      \"],[6,\"button\"],[9,\"class\",\"login-submit-button\"],[9,\"type\",\"submit\"],[7],[0,\"Login\"],[8],[0,\"\\n    \"],[8],[0,\"\\n  \"],[8],[0,\"\\n\\n  \"],[6,\"div\"],[9,\"class\",\"form-divider\"],[7],[0,\"\\n    \"],[6,\"span\"],[9,\"class\",\"signin-divider\"],[7],[0,\"\\n      \"],[6,\"h3\"],[7],[0,\" --------------- or signin with ---------------\"],[8],[0,\"\\n    \"],[8],[0,\"\\n  \"],[8],[0,\"\\n\\n  \"],[6,\"div\"],[9,\"id\",\"idp-based\"],[7],[0,\"\\n      \"],[6,\"a\"],[9,\"href\",\"http://local.ssocircle.com:8082/saml/login?disco=true\"],[7],[0,\"\\n        \"],[6,\"button\"],[9,\"class\",\"idp-button\"],[7],[0,\"SSO Circle\"],[8],[8],[0,\"\\n\\n      \"],[6,\"button\"],[9,\"class\",\"idp-button\"],[9,\"type\",\"submit\"],[9,\"value\",\"GOOGLE\"],[7],[0,\"GOOGLE\"],[8],[0,\"\\n  \"],[8],[0,\"\\n\\n\\n\"],[8]],\"hasEval\":false}", "meta": { "moduleName": "zesharing/templates/components/login-form.hbs" } });
 });
 define("zesharing/templates/components/logout-button", ["exports"], function (exports) {
   "use strict";
@@ -468,6 +454,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("zesharing/app")["default"].create({"name":"zesharing","version":"0.0.0+73978f7d"});
+  require("zesharing/app")["default"].create({"name":"zesharing","version":"0.0.0+c612fbba"});
 }
 //# sourceMappingURL=zesharing.map

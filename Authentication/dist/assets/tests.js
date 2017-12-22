@@ -52,7 +52,7 @@ define('zesharing/tests/app.lint-test', [], function () {
 
   QUnit.test('routes/protected.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'routes/protected.js should pass ESLint\n\n');
+    assert.ok(false, 'routes/protected.js should pass ESLint\n\n4:8 - \'Logger\' is assigned a value but never used. (no-unused-vars)');
   });
 });
 define('zesharing/tests/helpers/destroy-app', ['exports'], function (exports) {

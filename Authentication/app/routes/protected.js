@@ -5,7 +5,7 @@ const {Logger} = Ember;
 
 export default Route.extend({
   beforeModel() {
-    if (!Cookies.get('Auth')) {
+    if (!Cookies.get('jwt')) {
       this.transitionTo('login');
     }
     else {
@@ -15,22 +15,10 @@ export default Route.extend({
 
   actions: {
     onLogout() {
-      /*Cookies.remove('Auth', { path: '/protected' });
-      /!*this.transitionTo('http://localhost:8082/saml/logout')*!/
-      this.replaceWith('/');*/
-      Ember.$.ajax({
-        url: "/saml/logout",
-        type: "POST",
-        data: "logout"
-      }).then(function(resp){
-// handle your server response here
-        Logger.log(resp);
-      }).catch(function(error){
-// handle errors here
-        Logger.log(error);
-      });
-      Cookies.remove('Auth', { path: '/protected' });
-      this.replaceWith('/');
-    }
+      Cookies.remove('jwt');
+      window.location.replace("http://local.ssocircle.com:8082/landing");
+
+
+          }
   }
 });

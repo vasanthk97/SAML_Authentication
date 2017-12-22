@@ -15,10 +15,10 @@
  */
 
 /*
-package com.vdenotaris.spring.boot.security.saml.web.controllers;
+package com.vdenotaris.zesharing.boot.security.saml.web.controllers;
 
-import com.vdenotaris.spring.boot.security.saml.web.CommonTestSupport;
-import com.vdenotaris.spring.boot.security.saml.web.TestConfig;
+import com.vdenotaris.zesharing.boot.security.saml.web.CommonTestSupport;
+import com.vdenotaris.zesharing.boot.security.saml.web.TestConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

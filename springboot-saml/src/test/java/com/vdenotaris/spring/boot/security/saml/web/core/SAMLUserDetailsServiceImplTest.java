@@ -18,6 +18,7 @@ package com.vdenotaris.spring.boot.security.saml.web.core;
 
 import com.vdenotaris.spring.boot.security.saml.web.CommonTestSupport;
 import com.vdenotaris.spring.boot.security.saml.web.TestConfig;
+import com.zemoso.zesharing.security.saml.web.core.SAMLUserDetailsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.opensaml.saml2.core.NameID;
