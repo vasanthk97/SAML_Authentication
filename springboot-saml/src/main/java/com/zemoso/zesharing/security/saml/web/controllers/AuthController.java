@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthController {
     Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    SAMLCredential samlCredential;
+//    SAMLCredential samlCredential;
 
     /**
      * If the user is not authenticated from IDP this controller will send the user back to
@@ -66,15 +66,15 @@ public class AuthController {
                     logger.error(e.getMessage());
                 }
 
-                //Due to bug in SAML, Credential gets losts from security context.
-                //So keep a copy.
-                if (userSamlCredential != null) {
-                    this.samlCredential = userSamlCredential;
-
-                } else {
-                    userSamlCredential = this.samlCredential;
-
-                }
+//                //Due to bug in SAML, Credential gets losts from security context.
+//                //So keep a copy.
+//                if (userSamlCredential != null) {
+//                    this.samlCredential = userSamlCredential;
+//
+//                } else {
+//                    userSamlCredential = this.samlCredential;
+//
+//                }
 
                 CustomAuthUser user = new CustomAuthUser();
                 user.setEmailId(userSamlCredential.getNameID().getValue());

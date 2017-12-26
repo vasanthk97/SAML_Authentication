@@ -454,6 +454,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("zesharing/app")["default"].create({"name":"zesharing","version":"0.0.0+c612fbba"});
+  require("zesharing/app")["default"].create({"name":"zesharing","version":"0.0.0+c78d6079"});
 }
 //# sourceMappingURL=zesharing.map
